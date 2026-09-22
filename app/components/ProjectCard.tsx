@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { GlobeIcon, GithubIcon } from './icons';
+import { basePath } from '@/lib/basePath';
 import type { Project } from '@/lib/projects';
 
 const btnClasses =
@@ -20,7 +21,13 @@ export default function ProjectCard({
         {showPreview && (
           <div className="relative w-full h-52 bg-stone-800/80 rounded-xl mb-6 overflow-hidden border border-stone-700/50 flex items-center justify-center">
             {image ? (
-              <Image src={image} alt={`${title} preview`} fill className="object-cover" />
+              <Image
+                src={`${basePath}${image}`}
+                alt={`${title} preview`}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
             ) : (
               <span className="text-stone-600 text-xs font-mono uppercase tracking-wider">
                 {title} Preview

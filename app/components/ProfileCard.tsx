@@ -1,7 +1,9 @@
 "use client"
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import LiveMap from './LiveMap';
 import { GithubIcon, MailIcon, ResumeIcon } from './icons';
+import { basePath } from '@/lib/basePath';
 
 function useLondonTime() {
   const [time, setTime] = useState('');
@@ -38,11 +40,13 @@ export default function ProfileCard() {
 
       <div className="px-6 pb-8 relative bg-stone-900">
         <div className="absolute -top-12 left-6 z-30">
-          <div className="w-24 h-24 rounded-full border-4 border-stone-900 bg-stone-700 shadow-[0_0_20px_rgba(217,119,6,0.2)] overflow-hidden flex items-center justify-center">
-            <img
-              src="/me_pic.jpg"
+          <div className="relative w-24 h-24 rounded-full border-4 border-stone-900 bg-stone-700 shadow-[0_0_20px_rgba(217,119,6,0.2)] overflow-hidden flex items-center justify-center">
+            <Image
+              src={`${basePath}/me_pic.jpg`}
               alt="Profile picture of Dmitrijs"
-              className="w-full h-full object-cover"
+              fill
+              sizes="96px"
+              className="object-cover"
             />
           </div>
         </div>
@@ -68,10 +72,13 @@ export default function ProfileCard() {
           </a>
         </div>
 
-        <img
-          src="/idle_coding.gif"
+        <Image
+          src={`${basePath}/idle_coding.gif`}
           alt=""
           aria-hidden="true"
+          width={80}
+          height={80}
+          unoptimized
           className="absolute bottom-4 right-4 w-16 h-16 sm:w-20 sm:h-20 pointer-events-none select-none drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)]"
         />
       </div>
